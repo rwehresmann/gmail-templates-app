@@ -1,0 +1,15 @@
+{
+    "manifest_version": 2,
+    "name": "Snippets Extension",
+    "version": "1.0",
+    "permissions": [
+      "https://mail.google.com/",
+      "https://inbox.google.com/"
+    ],
+    "content_scripts" : [
+      {
+        "matches": ["https://mail.google.com/*", "https://inbox.google.com/*"],
+        "js": ["inboxsdk.js", "extension.js"]
+      }
+    ]
+  }
