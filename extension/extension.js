@@ -4,7 +4,7 @@ InboxSDK.load(2, "sdk_email-templates_0c739a8f53").then(function(sdk){
   sdk.Compose.registerComposeViewHandler(function(composeView){
     composeView.addButton({
       title: "Snippets",
-      iconUrl: chrome.extension.getURL("./snippets-ico.svg"),
+      iconUrl: "https://i.ibb.co/Dw1GYx4/snippet-btn.png",
       hasDropdown: true,
       onClick: function(event) {
         event.dropdown.el.innerHTML  = '<iframe src="' + ALLOWED_ORIGIN + '/#/templates" height="500"></iframe>';
