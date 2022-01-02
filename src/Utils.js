@@ -24,12 +24,13 @@ export function fetchSnippets() {
 }
 
 export function addSnippet(snippet) {
-  if (typeof snippet !== Snippet || !snippet.text || !snippet.title ) return
+  if (!snippet.text || !snippet.name ) return
 
   let snippets = fetchSnippets();
-  snippets.push(snippet);
+  const jsonSnippet = JSON.parse(JSON.stringify(snippet));
+  snippets.push(jsonSnippet);
 
-  localStorage[SNIPPET_KEY] = snippets;
+  localStorage[SNIPPET_KEY] = JSON.stringify(snippets);
 }
 
 export function removeSnippet(id) {
@@ -37,7 +38,7 @@ export function removeSnippet(id) {
 
   let snippets = fetchSnippets();
   let updatedSnippets = snippets.filter(function(elm, index, arr){ 
-    return elm.id !== uuid;
+    return elm.id !== id;
   });  
 
   localStorage[SNIPPET_KEY] = JSON.stringify(updatedSnippets);
