@@ -7,7 +7,7 @@ InboxSDK.load(2, "sdk_email-templates_0c739a8f53").then(function(sdk){
       iconUrl: chrome.extension.getURL("./snippets-ico.svg"),
       hasDropdown: true,
       onClick: function(event) {
-        event.dropdown.el.innerHTML  = '<iframe src="' + ALLOWED_ORIGIN + '/#/templates"></iframe>';
+        event.dropdown.el.innerHTML  = '<iframe src="' + ALLOWED_ORIGIN + '/#/templates" height="500"></iframe>';
       },
     });
 
