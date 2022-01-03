@@ -18,8 +18,18 @@ export default function SnippetsList() {
   const data = fetchSnippets();
   const [snippets, setSnippets] = useState(data);
 
-  const addInDraft = (snippet) => {
-    window.parent.postMessage(snippet.text, '*');
+  const addInDraft = (snippet, event) => {
+    const targetTagName = event.target.tagName;
+
+    // Not pretty, but let's keep like that for now.
+    // The whole line is clicable, but we don't wanna send
+    // the message when the edit/delete action is clicked.
+    // Those actions will come inside an a > svg > path tags,
+    // tags that aren't used in the rest of the line, that's why
+    // this validation is enough.
+    if (!['a', 'svg', 'path'].includes(targetTagName.toLowerCase())) { 
+      window.parent.postMessage(snippet.text, '*');
+    }
   }
 
   const handleRemoveSnippet = (id) => {
