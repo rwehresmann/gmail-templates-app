@@ -1,8 +1,8 @@
 import { v4 as uuidv4 } from 'uuid';
 
 export class Snippet {
-  constructor(name, text) {
-    this.id = uuidv4();
+  constructor(name, text, id = null) {
+    this.id = id || uuidv4();
     this.name = name;
     this.text = text;
   }
@@ -42,4 +42,26 @@ export function removeSnippet(id) {
   });  
 
   localStorage[SNIPPET_KEY] = JSON.stringify(updatedSnippets);
+}
+
+export function findSnippet(id) {
+  return fetchSnippets().find(snippet => snippet.id === id)
+}
+
+export function updateSnippet(snippet) {
+  if (!snippet.text || !snippet.name ) return
+
+  let snippets = fetchSnippets();
+
+  for (let i = 0; i < snippets.length; i++) {
+    console.log(`${snippets[i].id} === ${snippet.id}`)
+
+    if (snippets[i].id === snippet.id) {
+      snippets[i].name = snippet.name;
+      snippets[i].text = snippet.text;
+
+      localStorage[SNIPPET_KEY] = JSON.stringify(snippets);
+      break
+    }
+  }
 }

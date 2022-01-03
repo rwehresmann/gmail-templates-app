@@ -10,6 +10,8 @@ import AddIcon from '@mui/icons-material/Add';
 import ListSubheader from '@mui/material/ListSubheader';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
+import Grid from '@mui/material/Grid';
 import { removeSnippet, fetchSnippets } from './Utils';
 
 export default function SnippetsList() {
@@ -44,7 +46,7 @@ export default function SnippetsList() {
       <nav aria-label="secondary mailbox folders">
         <List subheader={
           <ListSubheader component="div" id="nested-list-subheader">
-            My snippets
+            { snippets.length > 0 ? "My snippets" : "You don't have any snippets yet" }
           </ListSubheader>
         }>
           {snippets.map((snippet, index) =>
@@ -53,9 +55,19 @@ export default function SnippetsList() {
               disablePadding 
               onClick={addInDraft.bind(this, snippet)}
               secondaryAction={
-                <IconButton edge="end" aria-label="delete" onClick={handleRemoveSnippet.bind(this, snippet.id)}>
-                  <DeleteIcon />
-                </IconButton>
+                <Grid container columnSpacing={2}>
+                  <Grid item>
+                    <IconButton edge="end" aria-label="edit" component="a" href={`#/templates/${snippet.id}/edit`}>
+                      <EditIcon />
+                    </IconButton>
+                  </Grid>
+
+                  <Grid item>
+                    <IconButton edge="end" aria-label="delete" onClick={handleRemoveSnippet.bind(this, snippet.id)}>
+                      <DeleteIcon />
+                    </IconButton>
+                  </Grid>
+                </Grid>
               }
             >
               <ListItemButton>
