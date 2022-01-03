@@ -12,7 +12,7 @@ import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import Grid from '@mui/material/Grid';
-import { removeSnippet, fetchSnippets } from './Utils';
+import { removeSnippet, fetchSnippets, truncate } from './Utils';
 
 export default function SnippetsList() {
   const data = fetchSnippets();
@@ -72,8 +72,8 @@ export default function SnippetsList() {
             >
               <ListItemButton>
                 <ListItemText 
-                  primary={snippet.name} 
-                  secondary={snippet.text} 
+                  primary={truncate(snippet.name)} 
+                  secondary={truncate(snippet.text)} 
                 />
               </ListItemButton>
             </ListItem>

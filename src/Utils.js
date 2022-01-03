@@ -65,3 +65,17 @@ export function updateSnippet(snippet) {
     }
   }
 }
+
+export function truncate(str) {
+  const maxLength = 20;
+
+  if (str.length <= maxLength) return str;
+  
+  let truncatedStr = str.substring(0, maxLength);
+
+  for (let i = truncatedStr.length - 1; i >= 0; i--) {
+    if (truncatedStr[i] !== "") {
+      return truncatedStr.substring(0, i) + "...";
+    }
+  }
+}
