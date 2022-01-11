@@ -74,7 +74,7 @@ export function truncate(str) {
   let truncatedStr = str.substring(0, maxLength);
 
   for (let i = truncatedStr.length - 1; i >= 0; i--) {
-    if (truncatedStr[i] !== "") {
+    if (truncatedStr[i] !== " ") {
       return truncatedStr.substring(0, i) + "...";
     }
   }
