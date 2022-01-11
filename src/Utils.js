@@ -54,8 +54,6 @@ export function updateSnippet(snippet) {
   let snippets = fetchSnippets();
 
   for (let i = 0; i < snippets.length; i++) {
-    console.log(`${snippets[i].id} === ${snippet.id}`)
-
     if (snippets[i].id === snippet.id) {
       snippets[i].name = snippet.name;
       snippets[i].text = snippet.text;
